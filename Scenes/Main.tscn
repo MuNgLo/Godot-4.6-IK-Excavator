@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://b4pjjwhcckql4"]
+
+[ext_resource type="PackedScene" uid="uid://djhgncikeayc1" path="res://BlendFiles/StillSWorld.blend" id="1_glv2v"]
+[ext_resource type="Material" uid="uid://d3j4bljftkpjn" path="res://Materials/Blue.tres" id="2_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://chesrsvqi2dyy" path="res://Scenes/excavator_boom.tscn" id="2_uu6xs"]
+[ext_resource type="Material" uid="uid://ceyj6ofoae3bl" path="res://Materials/Red.tres" id="3_v1gob"]
+[ext_resource type="Script" uid="uid://bfsmprlskktpl" path="res://Scripts/RubbleSpawner.cs" id="6_v1gob"]
+[ext_resource type="Script" uid="uid://dhlcd2mx8w8fs" path="res://Scripts/RubbleDeSpawner.cs" id="7_50glp"]
+[ext_resource type="PackedScene" uid="uid://ihqkp7n0or0c" path="res://Scenes/rubble.tscn" id="7_jw32o"]
+[ext_resource type="PackedScene" uid="uid://hpobeyx4ov6o" path="res://Scenes/UICoutner.tscn" id="8_50glp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r0du0"]
+
+[sub_resource type="Sky" id="Sky_cm0pq"]
+sky_material = SubResource("ProceduralSkyMaterial_r0du0")
+
+[sub_resource type="Environment" id="Environment_fos0i"]
+background_mode = 2
+sky = SubResource("Sky_cm0pq")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vy5pj"]
+height = 0.17248535
+radius = 0.81103516
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_50glp"]
+height = 0.46984863
+radius = 0.55029297
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bmxlf"]
+height = 0.45074463
+radius = 0.3876953
+
+[node name="StillSWorld" unique_id=1767048372 instance=ExtResource("1_glv2v")]
+
+[node name="CollisionShape3D" parent="Level/grond/StaticBody3D" parent_id_path=PackedInt32Array(2094145010) index="0" unique_id=858723747]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010544777, 0, -0.00020313263)
+
+[node name="RubbleSpawner" type="Node3D" parent="." index="1" unique_id=708429132 node_paths=PackedStringArray("rubbleContainer")]
+transform = Transform3D(-4.371139e-08, -0.99675226, 0.080529496, 0, 0.080529496, 0.99675226, -1, 4.3569425e-08, -3.5200545e-09, 8.814421, 3.146518, -1.8681219)
+script = ExtResource("6_v1gob")
+maxRubble = 300
+minInterval = 0.1
+maxInterval = 0.5
+pushForceOnSpawn = 60.0
+red = ExtResource("3_v1gob")
+blue = ExtResource("2_pbw6q")
+rubbleContainer = NodePath("../RubbleContainer")
+prefabRubble = ExtResource("7_jw32o")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="2" unique_id=552802038]
+transform = Transform3D(0.7584188, 0.47770315, -0.4433967, 0, 0.68029886, 0.7329349, 0.6517676, -0.55587167, 0.51595145, 0, 3.6620884, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="3" unique_id=448523427]
+environment = SubResource("Environment_fos0i")
+
+[node name="ExcavatorBoom" parent="." index="4" unique_id=726740827 instance=ExtResource("2_uu6xs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="RubbleContainer" type="Node3D" parent="." index="5" unique_id=2107968599]
+
+[node name="Area3D" type="Area3D" parent="." index="6" unique_id=68184659]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -2.3701093, 0.4331556, 0.70220673)
+script = ExtResource("7_50glp")
+blue = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=1747424418]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.17809731, 0, 0)
+shape = SubResource("CylinderShape3D_vy5pj")
+debug_color = Color(0.62352943, 0, 0.3764706, 1)
+
+[node name="Area3D2" type="Area3D" parent="." index="7" unique_id=1559918041]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 2.5211437, 0.21027774, 0.8166516)
+script = ExtResource("7_50glp")
+red = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2" index="0" unique_id=1652077518]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.018612444, 0, 0)
+shape = SubResource("CylinderShape3D_vy5pj")
+debug_color = Color(0.62352943, 0, 0.3764706, 1)
+
+[node name="Area3D3" type="Area3D" parent="." index="8" unique_id=143795054]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 1.9211619, 0.21027774, 3.1946447)
+script = ExtResource("7_50glp")
+red = true
+blue = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D3" index="0" unique_id=512215226]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.16729409, 0, 0)
+shape = SubResource("CylinderShape3D_50glp")
+debug_color = Color(0.62352943, 0, 0.3764706, 1)
+
+[node name="Area3D4" type="Area3D" parent="." index="9" unique_id=223320174]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0.0034845471, 0.21027774, 2.0741007)
+script = ExtResource("7_50glp")
+red = true
+blue = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D4" index="0" unique_id=1106726396]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.16729409, 0, 0)
+shape = SubResource("CylinderShape3D_50glp")
+debug_color = Color(0.62352943, 0, 0.3764706, 1)
+
+[node name="Area3D5" type="Area3D" parent="." index="10" unique_id=1637770362]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -1.7051601, 0.21027774, 2.9773626)
+script = ExtResource("7_50glp")
+red = true
+blue = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D5" index="0" unique_id=1288456340]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.15774208, 0, 0)
+shape = SubResource("CylinderShape3D_bmxlf")
+debug_color = Color(0.62352943, 0, 0.3764706, 1)
+
+[node name="Control" parent="." index="11" unique_id=1773793542 instance=ExtResource("8_50glp")]

@@ -1,0 +1,227 @@
+[gd_scene format=3 uid="uid://chesrsvqi2dyy"]
+
+[ext_resource type="PackedScene" uid="uid://b3u5wc2odh0" path="res://BlendFiles/ExcavatorBoom.blend" id="1_b3nu4"]
+[ext_resource type="Script" uid="uid://dsdx11acuwj8u" path="res://Scripts/ExcavatorInput.cs" id="2_54ouq"]
+[ext_resource type="Script" uid="uid://dganwa1h24lh7" path="res://Scripts/TrackerCamera3d.cs" id="3_xxuot"]
+
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_54ouq"]
+angle = 1.7168804
+
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_xxuot"]
+angle = 1.8908898
+
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_tjihw"]
+angle = 2.8834584
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_54ouq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_54ouq"]
+size = Vector3(0.6064453, 0.40447998, 0.064941406)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xxuot"]
+size = Vector3(0.6064453, 0.068740845, 0.17132568)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tjihw"]
+size = Vector3(0.6064453, 0.03881502, 0.5413666)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u831h"]
+size = Vector3(0.67871094, 0.06225419, 0.19875717)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5m3k7"]
+size = Vector3(0.05908203, 0.36672205, 0.33690047)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o4eya"]
+size = Vector3(0.05908203, 0.24793051, 0.12176344)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m4c86"]
+size = Vector3(0.05908203, 0.14447308, 0.30570942)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54ouq"]
+transparency = 1
+albedo_color = Color(0.27209136, 0.44875783, 1, 0.5882353)
+
+[sub_resource type="SphereMesh" id="SphereMesh_xxuot"]
+radius = 0.3
+height = 0.6
+
+[node name="ExcavatorBoom" unique_id=1946236270 node_paths=PackedStringArray("bucketIKTarget", "skeleton", "bucketAttachment") instance=ExtResource("1_b3nu4")]
+script = ExtResource("2_54ouq")
+curlSpeed = 1.515
+maxBucketAngle = 86.385
+bucketIKTarget = NodePath("IKBucketTarget")
+skeleton = NodePath("Armature/Skeleton3D")
+bucketAttachment = NodePath("Armature/Skeleton3D/Bucket")
+
+[node name="CCDIK3D" type="CCDIK3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(961676964) index="1" unique_id=222563344]
+setting_count = 2
+settings/0/target_node = NodePath("../../../IKBucketTarget")
+settings/1/target_node = NodePath("../BoneAttachment3D")
+settings/0/root_bone_name = "Boom"
+settings/0/root_bone = 1
+settings/0/end_bone_name = "Bucket"
+settings/0/end_bone = 4
+settings/0/extend_end_bone = false
+settings/0/joint_count = 3
+settings/1/root_bone_name = "BL1"
+settings/1/root_bone = 6
+settings/1/end_bone_name = "BL3"
+settings/1/end_bone = 9
+settings/1/extend_end_bone = false
+settings/1/joint_count = 3
+settings/0/joints/0/rotation_axis = 0
+settings/0/joints/0/limitation = SubResource("JointLimitationCone3D_54ouq")
+settings/0/joints/0/limitation/right_axis = 0
+settings/0/joints/0/limitation/rotation_offset = Quaternion(0.11, 0, 0, 1)
+settings/0/joints/1/rotation_axis = 0
+settings/0/joints/1/limitation = SubResource("JointLimitationCone3D_xxuot")
+settings/0/joints/1/limitation/right_axis = 0
+settings/0/joints/1/limitation/rotation_offset = Quaternion(0.59, 0, 0, 1)
+settings/0/joints/2/rotation_axis = 0
+settings/0/joints/2/limitation = null
+settings/1/joints/0/rotation_axis = 3
+settings/1/joints/0/limitation = SubResource("JointLimitationCone3D_tjihw")
+settings/1/joints/0/limitation/right_axis = 0
+settings/1/joints/0/limitation/rotation_offset = Quaternion(-0.305, 0, 0, 1)
+settings/1/joints/1/rotation_axis = 3
+settings/1/joints/1/limitation = null
+settings/1/joints/2/rotation_axis = 3
+settings/1/joints/2/limitation = null
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(961676964) index="2" unique_id=1290450253]
+transform = Transform3D(1, 2.2547843e-07, -2.876311e-07, -1.6980586e-07, -0.41025758, -0.91196877, -3.2363283e-07, 0.91196835, -0.41025853, -9.134212e-07, 1.0113676, -2.761771)
+bone_name = "BucketEnd"
+bone_idx = 5
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Armature/Skeleton3D/BoneAttachment3D" index="0" unique_id=746968690]
+physics_material_override = SubResource("PhysicsMaterial_54ouq")
+sync_to_physics = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/AnimatableBody3D" index="0" unique_id=1075481462]
+transform = Transform3D(1, 3.0304625e-07, 6.95137e-08, -1.398628e-07, 0.6381366, -0.7699233, -2.7768607e-07, 0.7699234, 0.6381364, -4.1049702e-08, 0.04928994, -0.09358752)
+shape = SubResource("BoxShape3D_54ouq")
+debug_color = Color(0, 0.62794054, 0.49406844, 1)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/AnimatableBody3D" index="1" unique_id=283518458]
+transform = Transform3D(1, 2.616888e-07, -1.6790023e-07, -1.398628e-07, -0.10366061, -0.9946127, -2.7768607e-07, 0.994613, -0.10366064, 2.6650753e-08, 0.23229885, 0.05804217)
+shape = SubResource("BoxShape3D_xxuot")
+debug_color = Color(0, 0.62794054, 0.49406844, 1)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/AnimatableBody3D" index="2" unique_id=1834912931]
+transform = Transform3D(1, 2.8458578e-07, 1.2521548e-07, -1.398628e-07, 0.77143604, -0.6363072, -2.7768607e-07, 0.6363073, 0.77143574, 2.8869048e-08, 0.3432343, 0.010151524)
+shape = SubResource("BoxShape3D_xxuot")
+debug_color = Color(0, 0.62794054, 0.49406844, 1)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/AnimatableBody3D" index="3" unique_id=726431128]
+transform = Transform3D(1, 1.3961366e-07, 2.778022e-07, -1.398628e-07, 1.0000001, 0.000872612, -2.7768607e-07, -0.0008725524, 0.9999995, -4.9884363e-08, 0.41110897, -0.3076474)
+shape = SubResource("BoxShape3D_tjihw")
+debug_color = Color(0, 0.62794054, 0.49406844, 1)
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/AnimatableBody3D" index="4" unique_id=1856531932]
+transform = Transform3D(1, 1.7709436e-07, 2.555405e-07, -1.398628e-07, 0.99029046, -0.13901758, -2.7768607e-07, 0.13901776, 0.9902898, -1.4043604e-07, 0.44506454, -0.65084666)
+shape = SubResource("BoxShape3D_u831h")
+debug_color = Color(0, 0.62794054, 0.49406844, 1)
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/AnimatableBody3D" index="5" unique_id=1837109549]
+transform = Transform3D(1, -3.940599e-08, 3.0840738e-07, -1.398628e-07, 0.82893085, 0.5593519, -2.7768607e-07, -0.5593523, 0.8289301, 0.309814, 0.17244697, -0.21923798)
+shape = SubResource("BoxShape3D_5m3k7")
+debug_color = Color(0, 0.62794054, 0.49406844, 1)
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/AnimatableBody3D" index="6" unique_id=476993615]
+transform = Transform3D(1, -3.9409912e-08, 3.0840346e-07, -1.398628e-07, 0.82893085, 0.5593519, -2.7768607e-07, -0.5593523, 0.8289301, 0.30981377, 0.2897606, -0.031524956)
+shape = SubResource("BoxShape3D_o4eya")
+debug_color = Color(0, 0.62794054, 0.49406844, 1)
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/AnimatableBody3D" index="7" unique_id=2101732647]
+transform = Transform3D(1, 1.166911e-07, 2.881689e-07, -1.398628e-07, 0.9966596, 0.081677586, -2.7768607e-07, -0.08167738, 0.9966587, 0.30981353, 0.32272816, -0.45780277)
+shape = SubResource("BoxShape3D_m4c86")
+debug_color = Color(0, 0.62794054, 0.49406844, 1)
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/AnimatableBody3D" index="8" unique_id=1291597095]
+transform = Transform3D(1, 1.166911e-07, 2.881689e-07, -1.398628e-07, 0.9966596, 0.081677586, -2.7768607e-07, -0.08167738, 0.9966587, -0.29631445, 0.32272825, -0.4578026)
+shape = SubResource("BoxShape3D_m4c86")
+debug_color = Color(0, 0.62794054, 0.49406844, 1)
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/AnimatableBody3D" index="9" unique_id=722502422]
+transform = Transform3D(1, -3.9409912e-08, 3.0840346e-07, -1.398628e-07, 0.82893085, 0.5593519, -2.7768607e-07, -0.5593523, 0.8289301, -0.27763537, 0.28976068, -0.031524792)
+shape = SubResource("BoxShape3D_o4eya")
+debug_color = Color(0, 0.62794054, 0.49406844, 1)
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Armature/Skeleton3D/BoneAttachment3D/AnimatableBody3D" index="10" unique_id=1676916352]
+transform = Transform3D(1, -3.940599e-08, 3.0840738e-07, -1.398628e-07, 0.82893085, 0.5593519, -2.7768607e-07, -0.5593523, 0.8289301, -0.28098974, 0.17244706, -0.21923782)
+shape = SubResource("BoxShape3D_5m3k7")
+debug_color = Color(0, 0.62794054, 0.49406844, 1)
+
+[node name="AimModifier3D" type="AimModifier3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(961676964) index="3" unique_id=1806228836]
+setting_count = 6
+settings/0/amount = 1.0
+settings/0/apply_bone_name = "C2P"
+settings/0/apply_bone = 10
+settings/0/reference_type = 0
+settings/0/reference_bone_name = "C2B"
+settings/0/reference_bone = 11
+settings/1/amount = 1.0
+settings/1/apply_bone_name = "C2B"
+settings/1/apply_bone = 11
+settings/1/reference_type = 0
+settings/1/reference_bone_name = "C2P"
+settings/1/reference_bone = 10
+settings/2/amount = 1.0
+settings/2/apply_bone_name = "C1B"
+settings/2/apply_bone = 13
+settings/2/reference_type = 0
+settings/2/reference_bone_name = "C1P"
+settings/2/reference_bone = 12
+settings/3/amount = 1.0
+settings/3/apply_bone_name = "C1P"
+settings/3/apply_bone = 12
+settings/3/reference_type = 0
+settings/3/reference_bone_name = "C1B"
+settings/3/reference_bone = 13
+settings/4/amount = 1.0
+settings/4/apply_bone_name = "C3P"
+settings/4/apply_bone = 7
+settings/4/reference_type = 0
+settings/4/reference_bone_name = "C3B"
+settings/4/reference_bone = 3
+settings/5/amount = 1.0
+settings/5/apply_bone_name = "C3B"
+settings/5/apply_bone = 3
+settings/5/reference_type = 0
+settings/5/reference_bone_name = "C3P"
+settings/5/reference_bone = 7
+settings/0/forward_axis = 2
+settings/0/use_euler = false
+settings/0/relative = true
+settings/1/forward_axis = 2
+settings/1/use_euler = false
+settings/1/relative = true
+settings/2/forward_axis = 5
+settings/2/use_euler = false
+settings/2/relative = true
+settings/3/forward_axis = 5
+settings/3/use_euler = false
+settings/3/relative = true
+settings/4/forward_axis = 2
+settings/4/use_euler = false
+settings/4/relative = true
+settings/5/forward_axis = 2
+settings/5/use_euler = false
+settings/5/relative = true
+
+[node name="Bucket" type="BoneAttachment3D" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(961676964) index="4" unique_id=1680103240]
+transform = Transform3D(1, 3.8692036e-09, 3.0301572e-07, 1.16133094e-07, -0.928472, -0.37140045, 2.7990419e-07, 0.37139934, -0.9284723, -9.160716e-07, 1.2444266, -2.8549972)
+bone_name = "Bucket"
+bone_idx = 4
+
+[node name="Camera3D" type="Camera3D" parent="." index="1" unique_id=82850860 node_paths=PackedStringArray("trackedTarget")]
+transform = Transform3D(1, 0, 0, 0, 0.9201772, 0.3915022, 0, -0.3915022, 0.92017716, -0.5743358, 0.69603395, -0.05421561)
+script = ExtResource("3_xxuot")
+trackedTarget = NodePath("../Armature/Skeleton3D/BoneAttachment3D")
+
+[node name="IKBucketTarget" type="Node3D" parent="." index="2" unique_id=100927782]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.536743e-07, 1.2452099, -2.854371)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IKBucketTarget" index="0" unique_id=2014204837]
+visible = false
+material_override = SubResource("StandardMaterial3D_54ouq")
+mesh = SubResource("SphereMesh_xxuot")

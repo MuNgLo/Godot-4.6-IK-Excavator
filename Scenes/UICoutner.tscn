@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://hpobeyx4ov6o"]
+
+[ext_resource type="Script" uid="uid://da52jgx71xmh5" path="res://Scripts/UIPointCounter.cs" id="1_fixa5"]
+
+[node name="Control" type="PanelContainer" unique_id=1773793542]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 20.0
+offset_right = -1018.0
+offset_bottom = -536.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2086570270]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer" unique_id=991663953]
+layout_mode = 2
+bbcode_enabled = true
+text = "Blue:00000
+Red:00000
+Err:00000"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_fixa5")

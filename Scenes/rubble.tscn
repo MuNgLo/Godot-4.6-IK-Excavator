@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ihqkp7n0or0c"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gue1m"]
+friction = 0.75
+bounce = 0.43
+absorbent = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_gue1m"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4lsn3"]
+radius = 0.1
+
+[node name="Rubble" type="RigidBody3D" unique_id=2079634651]
+mass = 15.0
+physics_material_override = SubResource("PhysicsMaterial_gue1m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1855111550]
+mesh = SubResource("SphereMesh_gue1m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=280476236]
+shape = SubResource("SphereShape3D_4lsn3")
